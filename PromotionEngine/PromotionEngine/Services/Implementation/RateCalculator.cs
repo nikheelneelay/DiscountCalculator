@@ -9,9 +9,16 @@ namespace PromotionEngine.Services.Implementation
 {
     public class RateCalculator : IRateCalculator
     {
-        public decimal CalculateRate(Dictionary<SKUProducts, int> orderData)
+        public RateCalculator(IPricingService pricingService)
         {
-           return 100;
+            PricingService = pricingService;
+        }
+
+        public IPricingService PricingService { get; }
+
+        public decimal CalculateRate(Dictionary<SKUProduct, int> orderData)
+        {
+            return 100;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using PromotionEngine.Common;
+﻿using PromotionEngine.Services.Implementation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace PromotionEngine.Services.Interfaces
 {
-    public interface IRateCalculator
+    public class PricingService: IPricingService
     {
-        decimal CalculateRate(Dictionary<SKUProduct, int> orderData);
     }
 }

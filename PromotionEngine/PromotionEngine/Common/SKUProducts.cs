@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PromotionEngine.Common
 {
-    public enum SKUProducts
+    public enum SKUProduct
     {
         A = 1,
         B,

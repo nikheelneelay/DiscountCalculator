@@ -24,12 +24,12 @@ namespace PromotionEngine.Controllers
         [Route("OrderPrice")]
         public async Task<ActionResult> OrderPrice(OrderVM orderInput)
         {
-            var orderData = new Dictionary<SKUProducts, int>
+            var orderData = new Dictionary<SKUProduct, int>
             {
-                { SKUProducts.A, orderInput.SKUAQty },
-                { SKUProducts.B, orderInput.SKUBQty },
-                { SKUProducts.C, orderInput.SKUCQty },
-                { SKUProducts.D, orderInput.SKUDQty }
+                { SKUProduct.A, orderInput.SKUAQty },
+                { SKUProduct.B, orderInput.SKUBQty },
+                { SKUProduct.C, orderInput.SKUCQty },
+                { SKUProduct.D, orderInput.SKUDQty }
             };
 
             return StatusCode(StatusCodes.Status200OK, true);

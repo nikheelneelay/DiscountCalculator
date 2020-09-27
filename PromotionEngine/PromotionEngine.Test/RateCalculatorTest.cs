@@ -1,3 +1,4 @@
+using Moq;
 using PromotionEngine.Common;
 using PromotionEngine.Services.Implementation;
 using System;
@@ -11,7 +12,9 @@ namespace PromotionEngine.Test
         [Fact]
         public void Test1()
         {
-            var rateCal = new RateCalculator();
+            var mockPricingService = new Mock<IPricingService>();
+
+            var rateCal = new RateCalculator(mockPricingService.Object);
 
             var totalPrice = rateCal.CalculateRate(GetMockOrderData());
 
@@ -19,14 +22,14 @@ namespace PromotionEngine.Test
 
         }
 
-        public Dictionary<SKUProducts, int> GetMockOrderData()
+        public Dictionary<SKUProduct, int> GetMockOrderData()
         {
-            var orderData = new Dictionary<SKUProducts, int>
+            var orderData = new Dictionary<SKUProduct, int>
             {
-                { SKUProducts.A, 1},
-                { SKUProducts.B, 1},
-                { SKUProducts.C, 1},
-                { SKUProducts.D, 1}
+                { SKUProduct.A, 1},
+                { SKUProduct.B, 1},
+                { SKUProduct.C, 1},
+                { SKUProduct.D, 1}
             };
 
             return orderData;
