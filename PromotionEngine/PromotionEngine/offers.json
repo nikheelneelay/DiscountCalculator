@@ -1,0 +1,39 @@
+[
+  {
+    "OfferPrice": 130.0,
+    "Products": [
+      {
+        "ProductName": 1,
+        "Qty": 3
+      }
+    ],
+    "Priority": 1,
+    "IsActive": true
+  },
+  {
+    "OfferPrice": 45.0,
+    "Products": [
+      {
+        "ProductName": 2,
+        "Qty": 2
+      }
+    ],
+    "Priority": 1,
+    "IsActive": true
+  },
+  {
+    "OfferPrice": 30.0,
+    "Products": [
+      {
+        "ProductName": 3,
+        "Qty": 1
+      },
+      {
+        "ProductName": 4,
+        "Qty": 1
+      }
+    ],
+    "Priority": 1,
+    "IsActive": true
+  }
+]
