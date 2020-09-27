@@ -136,6 +136,31 @@ namespace PromotionEngine.Test
             Assert.Equal(280, totalPrice);
         }
 
+
+        [Fact]
+        public void RateWithDiscount_Scenario4_ExpectedOutput()
+        {
+            var mockPricingService = new Mock<IPricingService>();
+            var mockOfferService = new Mock<IOfferService>();
+            mockPricingService.Setup(repo => repo.GetDefaultRateForSKUs(SKUProduct.A))
+                .Returns(50);
+            mockPricingService.Setup(repo => repo.GetDefaultRateForSKUs(SKUProduct.B))
+              .Returns(30);
+            mockPricingService.Setup(repo => repo.GetDefaultRateForSKUs(SKUProduct.C))
+              .Returns(20);
+            mockPricingService.Setup(repo => repo.GetDefaultRateForSKUs(SKUProduct.D))
+              .Returns(15);
+
+            mockOfferService.Setup(repo => repo.GetExistingOffers(false))
+               .Returns(GetExistingMockOffers(false));
+
+            var rateCal = new RateCalculator(mockPricingService.Object, mockOfferService.Object);
+
+            var totalPrice = rateCal.CalculateRateWithPromotions(GetMockOrderDataScenario4());
+
+            Assert.Equal(380, totalPrice);
+        }
+
         public List<OfferModel> GetExistingMockOffers(bool includeInactive)
         {
             var offers = new List<OfferModel>();
@@ -195,6 +220,18 @@ namespace PromotionEngine.Test
             var orderData = new Dictionary<SKUProduct, int>
             {
                 { SKUProduct.A, 3},
+                { SKUProduct.B, 5},
+                { SKUProduct.C, 1},
+                { SKUProduct.D, 1}
+            };
+
+            return orderData;
+        }
+        public Dictionary<SKUProduct, int> GetMockOrderDataScenario4()
+        {
+            var orderData = new Dictionary<SKUProduct, int>
+            {
+                { SKUProduct.A, 5},
                 { SKUProduct.B, 5},
                 { SKUProduct.C, 1},
                 { SKUProduct.D, 1}
