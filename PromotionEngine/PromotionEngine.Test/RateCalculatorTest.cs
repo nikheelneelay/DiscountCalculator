@@ -11,7 +11,7 @@ namespace PromotionEngine.Test
     public class RateCalculatorTest
     {
         [Fact]
-        public void Test1()
+        public void RateCalculator_MockData_DecimalData()
         {
             var mockPricingService = new Mock<IPricingService>();
 
