@@ -40,7 +40,7 @@ namespace PromotionEngine.Controllers
                 { SKUProduct.D, orderInput.SKUDQty }
             };
 
-            return StatusCode(StatusCodes.Status200OK, RateCalculator.CalculateRate(orderData));
+            return StatusCode(StatusCodes.Status200OK, RateCalculator.CalculateRateWithPromotions(orderData));
         }
     }
 }

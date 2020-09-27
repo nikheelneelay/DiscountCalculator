@@ -9,5 +9,6 @@ namespace PromotionEngine.Services.Interfaces
     public interface IRateCalculator
     {
         decimal CalculateRate(Dictionary<SKUProduct, int> orderData);
+        decimal CalculateRateWithPromotions(Dictionary<SKUProduct, int> orderData);
     }
 }
