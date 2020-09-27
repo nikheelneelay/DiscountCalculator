@@ -1,6 +1,7 @@
 using Moq;
 using PromotionEngine.Common;
 using PromotionEngine.Services.Implementation;
+using PromotionEngine.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using Xunit;

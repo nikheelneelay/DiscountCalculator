@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using PromotionEngine.Infrastructure;
 
 namespace PromotionEngine
 {
@@ -27,6 +28,8 @@ namespace PromotionEngine
             services.AddControllers();
 
             services.AddSwaggerGen();
+
+            Bootstrapper.RegisterDependencies(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
