@@ -138,7 +138,6 @@ namespace PromotionEngine.Test
 
         public List<OfferModel> GetExistingMockOffers(bool includeInactive)
         {
-            // TODO - Fetch offers from DB or configurable json
             var offers = new List<OfferModel>();
             var product1 = new OfferProductModel { ProductName = SKUProduct.A, Qty = 3 };
             var product2 = new OfferProductModel { ProductName = SKUProduct.B, Qty = 2 };
