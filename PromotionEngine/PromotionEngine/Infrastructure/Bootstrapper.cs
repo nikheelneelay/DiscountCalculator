@@ -14,6 +14,7 @@ namespace PromotionEngine.Infrastructure
         {
             services.AddTransient<IRateCalculator, RateCalculator>();
             services.AddTransient<IPricingService, PricingService>();
+            services.AddTransient<IOfferService, OfferService>();
         }
     }
 }
