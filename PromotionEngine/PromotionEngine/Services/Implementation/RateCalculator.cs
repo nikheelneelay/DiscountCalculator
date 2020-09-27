@@ -11,7 +11,7 @@ namespace PromotionEngine.Services.Implementation
     {
         public decimal CalculateRate(Dictionary<SKUProducts, int> orderData)
         {
-            throw new NotImplementedException();
+           return 100;
         }
     }
 }
