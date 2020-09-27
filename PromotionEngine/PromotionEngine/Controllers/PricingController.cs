@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PromotionEngine.Common;
 using PromotionEngine.Models.ViewModels;
+using PromotionEngine.Services.Interfaces;
 
 namespace PromotionEngine.Controllers
 {
@@ -13,6 +14,13 @@ namespace PromotionEngine.Controllers
     [ApiController]
     public class PricingController : ControllerBase
     {
+        public PricingController(IRateCalculator rateCalculator)
+        {
+            RateCalculator = rateCalculator;
+        }
+
+        public IRateCalculator RateCalculator { get; }
+
         [HttpGet]
         [Route("Get")]
         public async Task<ActionResult> Get()
@@ -22,7 +30,7 @@ namespace PromotionEngine.Controllers
 
         [HttpPost]
         [Route("OrderPrice")]
-        public async Task<ActionResult> OrderPrice(OrderVM orderInput)
+        public ActionResult<decimal> OrderPrice(OrderVM orderInput)
         {
             var orderData = new Dictionary<SKUProduct, int>
             {
@@ -32,7 +40,7 @@ namespace PromotionEngine.Controllers
                 { SKUProduct.D, orderInput.SKUDQty }
             };
 
-            return StatusCode(StatusCodes.Status200OK, true);
+            return StatusCode(StatusCodes.Status200OK, RateCalculator.CalculateRate(orderData));
         }
     }
 }
