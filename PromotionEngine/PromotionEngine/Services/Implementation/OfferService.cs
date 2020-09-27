@@ -1,4 +1,5 @@
-﻿using PromotionEngine.Common;
+﻿using Newtonsoft.Json;
+using PromotionEngine.Common;
 using PromotionEngine.Models.DomainModels;
 using PromotionEngine.Services.Interfaces;
 using System.Collections.Generic;
@@ -20,6 +21,14 @@ namespace PromotionEngine.Services.Implementation
             offers.Add(new OfferModel { Products = new List<OfferProductModel> { product1 }, OfferPrice = 130, Priority = 1, IsActive = true });
             offers.Add(new OfferModel { Products = new List<OfferProductModel> { product2 }, OfferPrice = 45, Priority = 1, IsActive = true });
             offers.Add(new OfferModel { Products = new List<OfferProductModel> { product3, product4 }, OfferPrice = 30, Priority = 1, IsActive = true });
+
+            return includeInactive ? offers : offers.Where(x => x.IsActive).ToList();
+        }
+
+        public List<OfferModel> GetExistingOffersFromJson(bool includeInactive)
+        {
+            // Link for fetching path- https://stackoverflow.com/questions/43709657/how-to-get-root-directory-of-project-in-asp-net-core-directory-getcurrentdirect
+            var offers = JsonConvert.DeserializeObject<List<OfferModel>>("Path to Json");
 
             return includeInactive ? offers : offers.Where(x => x.IsActive).ToList();
         }
