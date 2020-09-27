@@ -27,7 +27,13 @@ namespace PromotionEngine.Services.Implementation
 
         public decimal CalculateRateWithPromotions(Dictionary<SKUProduct, int> orderData)
         {
-            throw new NotImplementedException();
+            var discountedTotal = GetDiscountedPrice(ref orderData);
+
+            var undiscountedTotal = orderData.Sum(x => PricingService.GetDefaultRateForSKUs(x.Key) * x.Value);
+
+            var totalRate = discountedTotal + undiscountedTotal;
+
+            return totalRate;
         }
 
         public decimal GetDiscountedPrice(ref Dictionary<SKUProduct, int> orderData)

@@ -83,7 +83,7 @@ namespace PromotionEngine.Test
 
             var rateCal = new RateCalculator(mockPricingService.Object, mockOfferService.Object);
 
-            var totalPrice = rateCal.CalculateRate(GetMockOrderDataScenario1());
+            var totalPrice = rateCal.CalculateRateWithPromotions(GetMockOrderDataScenario1());
 
             Assert.Equal(100, totalPrice);
         }
@@ -107,7 +107,7 @@ namespace PromotionEngine.Test
 
             var rateCal = new RateCalculator(mockPricingService.Object, mockOfferService.Object);
 
-            var totalPrice = rateCal.CalculateRate(GetMockOrderDataScenario2());
+            var totalPrice = rateCal.CalculateRateWithPromotions(GetMockOrderDataScenario2());
 
             Assert.Equal(370, totalPrice);
         }
@@ -131,7 +131,7 @@ namespace PromotionEngine.Test
 
             var rateCal = new RateCalculator(mockPricingService.Object, mockOfferService.Object);
 
-            var totalPrice = rateCal.CalculateRate(GetMockOrderDataScenario3());
+            var totalPrice = rateCal.CalculateRateWithPromotions(GetMockOrderDataScenario3());
 
             Assert.Equal(280, totalPrice);
         }
