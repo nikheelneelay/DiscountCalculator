@@ -19,7 +19,23 @@ namespace PromotionEngine.Test
 
             var totalPrice = rateCal.CalculateRate(GetMockOrderData());
 
-            Assert.Equal(100, totalPrice);
+            Assert.NotNull(totalPrice);
+
+        }
+
+        [Fact]
+        public void RateCalculator_MockData_PricingServiceCalled()
+        {
+            var mockPricingService = new Mock<IPricingService>();
+
+            var rateCal = new RateCalculator(mockPricingService.Object);
+
+            var totalPrice = rateCal.CalculateRate(GetMockOrderData());
+
+            mockPricingService.Verify(x => x.GetDefaultRateForSKUs(SKUProduct.A), Times.Once);
+            mockPricingService.Verify(x => x.GetDefaultRateForSKUs(SKUProduct.B), Times.Once);
+            mockPricingService.Verify(x => x.GetDefaultRateForSKUs(SKUProduct.C), Times.Once);
+            mockPricingService.Verify(x => x.GetDefaultRateForSKUs(SKUProduct.D), Times.Once);
 
         }
 

@@ -18,7 +18,9 @@ namespace PromotionEngine.Services.Implementation
 
         public decimal CalculateRate(Dictionary<SKUProduct, int> orderData)
         {
-            return 100;
+            var totalPrice = orderData.Sum(x => PricingService.GetDefaultRateForSKUs(x.Key) * x.Value);
+
+            return totalPrice;
         }
     }
 }
