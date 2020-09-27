@@ -10,7 +10,7 @@ namespace PromotionEngine.Test
     public class PricingServiceTest
     {
         [Fact]
-        public void RateCalculator_MockData_DecimalData()
+        public void GetDefaultRate_SKUProduct_DefaultRate()
         {
             var pricingService = new PricingService();
 

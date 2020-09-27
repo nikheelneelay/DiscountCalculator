@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PromotionEngine.Models.DomainModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,5 +8,6 @@ namespace PromotionEngine.Services.Interfaces
 {
     public interface IOfferService
     {
+        List<OfferModel> GetExistingOffers(bool includeInactive);
     }
 }
