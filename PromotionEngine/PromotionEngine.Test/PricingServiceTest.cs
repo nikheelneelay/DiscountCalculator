@@ -1,8 +1,5 @@
 ﻿using PromotionEngine.Common;
 using PromotionEngine.Services.Implementation;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace PromotionEngine.Test
@@ -17,7 +14,6 @@ namespace PromotionEngine.Test
             var defaultRate = pricingService.GetDefaultRateForSKUs(SKUProduct.A);
 
             Assert.Equal(50, defaultRate);
-
         }
     }
 }

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PromotionEngine.Common;
 using PromotionEngine.Models.ViewModels;
 using PromotionEngine.Services.Interfaces;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PromotionEngine.Controllers
 {
@@ -14,12 +12,12 @@ namespace PromotionEngine.Controllers
     [ApiController]
     public class PricingController : ControllerBase
     {
-        public PricingController(IRateCalculator rateCalculator)
+        public PricingController(IRateCalculatorService rateCalculator)
         {
             RateCalculator = rateCalculator;
         }
 
-        public IRateCalculator RateCalculator { get; }
+        public IRateCalculatorService RateCalculator { get; }
 
         [HttpGet]
         [Route("Get")]

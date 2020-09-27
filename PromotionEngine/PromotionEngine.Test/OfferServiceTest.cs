@@ -1,7 +1,4 @@
 ﻿using PromotionEngine.Services.Implementation;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace PromotionEngine.Test
@@ -16,7 +13,6 @@ namespace PromotionEngine.Test
             var offers = offerService.GetExistingOffers(true);
 
             Assert.NotNull(offers);
-
         }
 
         [Fact]
@@ -27,7 +23,6 @@ namespace PromotionEngine.Test
             var offers = offerService.GetExistingOffers(true);
 
             Assert.True(offers.Count > 0);
-
         }
 
         [Fact]
@@ -38,7 +33,6 @@ namespace PromotionEngine.Test
             var offers = offerService.GetExistingOffers(false);
 
             Assert.True(offers.Count > 0);
-
         }
 
         [Fact]
@@ -49,7 +43,6 @@ namespace PromotionEngine.Test
             var offers = offerService.GetExistingOffers(true);
 
             Assert.NotNull(offers);
-
         }
     }
 }

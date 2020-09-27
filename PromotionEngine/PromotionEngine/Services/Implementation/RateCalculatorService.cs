@@ -3,13 +3,12 @@ using PromotionEngine.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace PromotionEngine.Services.Implementation
 {
-    public class RateCalculator : IRateCalculator
+    public class RateCalculatorService : IRateCalculatorService
     {
-        public RateCalculator(IPricingService pricingService, IOfferService offerService)
+        public RateCalculatorService(IPricingService pricingService, IOfferService offerService)
         {
             PricingService = pricingService;
             OfferService = offerService;
@@ -55,10 +54,9 @@ namespace PromotionEngine.Services.Implementation
 
                 if (productConsidered.Any())
                 {
-
                     decimal noOfTimesApplicable = 0;
 
-                    // Check how many times the discount can be applied 
+                    // Check how many times the discount can be applied
                     foreach (var product in productConsidered)
                     {
                         var applicableQty = offer.Products.FirstOrDefault(x => x.ProductName == product.Key).Qty;
@@ -82,7 +80,6 @@ namespace PromotionEngine.Services.Implementation
                         orderData[product.Key] = (int)(product.Value - applicableQty * noOfTimesApplicable);
                     }
                 }
-
             }
 
             return discountedTotal;

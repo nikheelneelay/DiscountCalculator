@@ -1,11 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Moq;
+﻿using Moq;
 using PromotionEngine.Controllers;
 using PromotionEngine.Models.ViewModels;
 using PromotionEngine.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace PromotionEngine.Test
@@ -15,7 +11,7 @@ namespace PromotionEngine.Test
         [Fact]
         public void PricingController_CalculatePrice_OkResponse()
         {
-            var mockRateService = new Mock<IRateCalculator>();
+            var mockRateService = new Mock<IRateCalculatorService>();
 
             var pricingObj = new PricingController(mockRateService.Object);
 
@@ -23,6 +19,5 @@ namespace PromotionEngine.Test
 
             Assert.Equal(0, data.Value);
         }
-
     }
 }

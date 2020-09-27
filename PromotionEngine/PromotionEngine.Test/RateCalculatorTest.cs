@@ -3,7 +3,6 @@ using PromotionEngine.Common;
 using PromotionEngine.Models.DomainModels;
 using PromotionEngine.Services.Implementation;
 using PromotionEngine.Services.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
@@ -18,12 +17,11 @@ namespace PromotionEngine.Test
             var mockPricingService = new Mock<IPricingService>();
             var mockOfferService = new Mock<IOfferService>();
 
-            var rateCal = new RateCalculator(mockPricingService.Object, mockOfferService.Object);
+            var rateCal = new RateCalculatorService(mockPricingService.Object, mockOfferService.Object);
 
             var totalPrice = rateCal.CalculateRate(GetMockOrderData());
 
             Assert.NotNull(totalPrice);
-
         }
 
         [Fact]
@@ -32,7 +30,7 @@ namespace PromotionEngine.Test
             var mockPricingService = new Mock<IPricingService>();
             var mockOfferService = new Mock<IOfferService>();
 
-            var rateCal = new RateCalculator(mockPricingService.Object, mockOfferService.Object);
+            var rateCal = new RateCalculatorService(mockPricingService.Object, mockOfferService.Object);
 
             var totalPrice = rateCal.CalculateRate(GetMockOrderData());
 
@@ -40,7 +38,6 @@ namespace PromotionEngine.Test
             mockPricingService.Verify(x => x.GetDefaultRateForSKUs(SKUProduct.B), Times.Once);
             mockPricingService.Verify(x => x.GetDefaultRateForSKUs(SKUProduct.C), Times.Once);
             mockPricingService.Verify(x => x.GetDefaultRateForSKUs(SKUProduct.D), Times.Once);
-
         }
 
         [Fact]
@@ -57,7 +54,7 @@ namespace PromotionEngine.Test
             mockPricingService.Setup(repo => repo.GetDefaultRateForSKUs(SKUProduct.D))
               .Returns(15);
 
-            var rateCal = new RateCalculator(mockPricingService.Object, mockOfferService.Object);
+            var rateCal = new RateCalculatorService(mockPricingService.Object, mockOfferService.Object);
 
             var totalPrice = rateCal.CalculateRate(GetMockOrderData());
 
@@ -81,7 +78,7 @@ namespace PromotionEngine.Test
             mockOfferService.Setup(repo => repo.GetExistingOffers(false))
                .Returns(GetExistingMockOffers(false));
 
-            var rateCal = new RateCalculator(mockPricingService.Object, mockOfferService.Object);
+            var rateCal = new RateCalculatorService(mockPricingService.Object, mockOfferService.Object);
 
             var totalPrice = rateCal.CalculateRateWithPromotions(GetMockOrderDataScenario1());
 
@@ -105,7 +102,7 @@ namespace PromotionEngine.Test
             mockOfferService.Setup(repo => repo.GetExistingOffers(false))
                .Returns(GetExistingMockOffers(false));
 
-            var rateCal = new RateCalculator(mockPricingService.Object, mockOfferService.Object);
+            var rateCal = new RateCalculatorService(mockPricingService.Object, mockOfferService.Object);
 
             var totalPrice = rateCal.CalculateRateWithPromotions(GetMockOrderDataScenario2());
 
@@ -129,13 +126,12 @@ namespace PromotionEngine.Test
             mockOfferService.Setup(repo => repo.GetExistingOffers(false))
                .Returns(GetExistingMockOffers(false));
 
-            var rateCal = new RateCalculator(mockPricingService.Object, mockOfferService.Object);
+            var rateCal = new RateCalculatorService(mockPricingService.Object, mockOfferService.Object);
 
             var totalPrice = rateCal.CalculateRateWithPromotions(GetMockOrderDataScenario3());
 
             Assert.Equal(280, totalPrice);
         }
-
 
         [Fact]
         public void RateWithDiscount_Scenario4_ExpectedOutput()
@@ -154,7 +150,7 @@ namespace PromotionEngine.Test
             mockOfferService.Setup(repo => repo.GetExistingOffers(false))
                .Returns(GetExistingMockOffers(false));
 
-            var rateCal = new RateCalculator(mockPricingService.Object, mockOfferService.Object);
+            var rateCal = new RateCalculatorService(mockPricingService.Object, mockOfferService.Object);
 
             var totalPrice = rateCal.CalculateRateWithPromotions(GetMockOrderDataScenario4());
 
@@ -227,6 +223,7 @@ namespace PromotionEngine.Test
 
             return orderData;
         }
+
         public Dictionary<SKUProduct, int> GetMockOrderDataScenario4()
         {
             var orderData = new Dictionary<SKUProduct, int>
